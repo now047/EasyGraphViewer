@@ -1,0 +1,11 @@
+version: '3'
+services:
+    easy-graph:
+        build: .
+        image: easy-graph:latest
+        restart: always
+        container_name: 'easy-graph'
+        ports:
+            - "8001:8001"
+        working_dir: '/root'
+        tty: true

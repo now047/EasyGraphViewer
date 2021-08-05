@@ -1,0 +1,120 @@
+from pandas import DataFrame
+
+ALL_COLLORS = [
+    'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure',
+    'beige', 'bisque', 'black', 'blanchedalmond', 'blue', 'blueviolet', 'brown', 'burlywood',
+    'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue', 'cornsilk', 'crimson', 'cyan',
+    'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgreen', 'darkgrey', 'darkkhaki',
+    'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen',
+    'darkslateblue', 'darkslategray', 'darkslategrey', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue',
+    'dimgray', 'dimgrey', 'dodgerblue',
+    'firebrick', 'floralwhite', 'forestgreen', 'fuchsia',
+    'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'greenyellow', 'grey',
+    'honeydew', 'hotpink',
+    'indianred', 'indigo', 'ivory',
+    'khaki',
+    'lavender', 'lavenderblush', 'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan',
+    'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightgrey', 'lightpink', 'lightsalmon',
+    'lightseagreen', 'lightskyblue', 'lightslategray', 'lightslategrey', 'lightsteelblue', 'lightyellow',
+    'lime', 'limegreen', 'linen',
+    'magenta', 'maroon', 'mediumaquamarine', 'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen',
+    'mediumslateblue', 'mediumspringgreen', 'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream',
+    'mistyrose', 'moccasin',
+    'navajowhite', 'navy',
+    'oldlace', 'olive', 'olivedrab', 'orange', 'orangered', 'orchid',
+    'palegoldenrod', 'palegreen', 'paleturquoise', 'palevioletred', 'papayawhip', 'peachpuff', 'peru',
+    'pink', 'plum', 'powderblue', 'purple',
+    'red', 'rosybrown', 'royalblue',
+    'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna', 'silver', 'skyblue', 'slateblue',
+    'slategray', 'slategrey', 'snow', 'springgreen', 'steelblue',
+    'tan', 'teal', 'thistle', 'tomato', 'turquoise',
+    'violet',
+    'wheat', 'white', 'whitesmoke',
+    'yellow', 'yellowgreen'
+]
+
+DATA_TESTED_DAILY_URL = 'https://www.mhlw.go.jp/content/pcr_tested_daily.csv'
+DATA_PCR_POSITIVE_URL = 'https://www.mhlw.go.jp/content/pcr_positive_daily.csv'
+DATA_DEATH_URL = 'https://www.mhlw.go.jp/content/death_total.csv'
+
+# %%
+
+datetime_format_help_df = DataFrame(
+    {
+        '指定子': [
+            '%a',
+            '%A',
+            '%w',
+            '%d',
+            '%b',
+            '%B',
+            '%m',
+            '%y',
+            '%Y',
+            '%H',
+            '%I',
+            '%p',
+            '%M',
+            '%S',
+            '%f',
+            '%z',
+            '%Z',
+            '%j',
+            '%U',
+            '%W',
+            '%c',
+            '%x',
+            '%X'
+        ],
+        '意味': [
+            'ロケールの曜日名を短縮形で表示します。',
+            'ロケールの曜日名を表示します。',
+            '曜日を10進表記した文字列を表示します。0 が日曜日で、6 が土曜日を表します。',
+            '0埋めした10進数で表記した月中の日にち。',
+            'ロケールの月名を短縮形で表示します。',
+            'ロケールの月名を表示します。',
+            '0埋めした10進数で表記した月。',
+            '0埋めした10進数で表記した世紀無しの年。',
+            '西暦 (4桁) の 10 進表記を表します。',
+            '0埋めした10進数で表記した時 (24時間,表記)。',
+            '0埋めした10進数で表記した時 (12時間,表記)。',
+            'ロケールの AM もしくは PM と等価な文字列になります。',
+            '0埋めした10進数で表記した分。',
+            '0埋めした10進数で表記した秒。',
+            '10進数で表記したマイクロ秒 (左側から0埋めされます)。',
+            'UTCオフセットを ±HHMM[SS[.ffffff]] の形式で表示します (オブジェクトがnaiveであれば空文字列)。',
+            'タイムゾーンの名前を表示します (オブジェクトがnaiveであれば空文字列)。',
+            '0埋めした10進数で表記した年中の日にち。',
+            '0埋めした10進数で表記した年中の週番号 (週の始まりは日曜日とする)。新年の最初の日曜日に先立つ日は 0週に属するとします。',
+            '0埋めした10進数で表記した年中の週番号 (週の始まりは月曜日とする)。新年の最初の月曜日に先立つ日は 0週に属するとします。',
+            'ロケールの日時を適切な形式で表します。',
+            'ロケールの日付を適切な形式で表します。',
+            'ロケールの時間を適切な形式で表します。'
+        ],
+        '例': [
+            'Sun, Mon, ..., Sat (en_US); So, Mo, ..., Sa (de_DE)',
+            'Sunday, Monday, ..., Saturday (en_US); Sonntag, Montag, ..., Samstag (de_DE)',
+            '0, 1, ..., 6',
+            '01, 02, ..., 31',
+            'Jan, Feb, ..., Dec (en_US); Jan, Feb, ..., Dez (de_DE)',
+            'January, February, ..., December (en_US); Januar, Februar, ..., Dezember (de_DE)',
+            '01, 02, ..., 12',
+            '00, 01, ..., 99',
+            '0001, 0002, ..., 2013, 2014, ..., 9998, 9999',
+            '00, 01, ..., 23',
+            '01, 02, ..., 12',
+            'AM, PM (en_US); am, pm (de_DE)',
+            '00, 01, ..., 59',
+            '00, 01, ..., 59',
+            '000000, 000001, ..., 999999',
+            '(空文字列), +0000, -0400, +1030, +063415, -030712.345216',
+            '(空文字列), UTC, GMT',
+            '001, 002, ..., 366',
+            '00, 01, ..., 53',
+            '00, 01, ..., 53',
+            'Tue Aug 16 21:30:00 1988 (en_US); Di 16 Aug 21:30:00 1988 (de_DE)',
+            '08/16/88 (None); 08/16/1988 (en_US); 16.08.1988 (de_DE)',
+            '21:30:00 (en_US); 21:30:00 (de_DE)'
+        ]
+    }
+)
