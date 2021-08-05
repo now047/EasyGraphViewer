@@ -68,7 +68,8 @@ def app():
         if x_axis_type == 'datetime':
             custom_datetime_format = None
             is_utc_time = False
-            if st.checkbox('Use custom datetime format', key='datetime_format_help'):
+            if st.checkbox('Use custom datetime format',
+                           key='datetime_format_help'):
                 custom_datetime_format = st.text_input(
                     'Use custom date/time format',
                     value='%Y-%M-%dT%H:%m:%S.%f',
@@ -122,7 +123,7 @@ def app():
                 plot_type = st.selectbox(
                     'Type:',
                     ['line', 'circle', 'cross', 'triangle'],
-                    key='plot_type_'+name,
+                    key='plot_type_' + name,
                     index=1)
                 legend = name
 
@@ -163,7 +164,7 @@ def app():
                     'Alpha:',
                     0.0, 1.0,
                     value=1.0,
-                    key='alpha_'+name,
+                    key='alpha_' + name,
                 )
 
                 graph_data.append({
@@ -207,7 +208,7 @@ def app():
                     script_text += textwrap.dedent(f'''
                             df["{x_axis_column}"] = df["{x_axis_column}"] + timedelta(hours={timezone_shift})''')
 
-    source = ColumnDataSource(df)
+    source = ColumnDataSource(df)  # noqa: F841
     fig = figure(title=title_txt,
                  x_axis_type=x_axis_type,
                  y_range=Range1d(0, y_range_max))
@@ -238,7 +239,8 @@ def app():
             \t)
             ''')
 
-    def gen_plot_text(type: str, name: str, legend: str, color: str, use_second_axis: bool, alpha: float):
+    def gen_plot_text(type: str, name: str, legend: str,
+                      color: str, use_second_axis: bool, alpha: float):
         if name == legend:
             legend = legend + '_'  # handles ambiguos of legend
         y_range_name = 'second' if use_second_axis else 'default'

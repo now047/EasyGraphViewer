@@ -89,13 +89,14 @@ def app():
                      source=tested_src,
                      legend_label="PCR tested")
             fig.vbar(x=death_df["shifted_date"],
-                     top=100*death_df["per_day"]/positive_df["PCR 検査陽性者数(単日)"],
+                     top=100 * death_df["per_day"] /
+                     positive_df["PCR 検査陽性者数(単日)"],
                      legend_label="Death%",
                      y_range_name="second",
                      color="red",
                      alpha=0.5)
             fig.vbar(x=positive_df["shifted_date"],
-                     top=(100*positive_df["PCR 検査陽性者数(単日)"] /
+                     top=(100 * positive_df["PCR 検査陽性者数(単日)"] /
                           tested_df["PCR 検査実施件数(単日)"]),
                      y_range_name="second",
                      legend_label="Positive%",
