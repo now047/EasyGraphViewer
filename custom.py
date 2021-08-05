@@ -96,9 +96,14 @@ def app():
             end_datetime = datetime.combine(end_date, end_time)
             st.write(end_datetime)
 
-            timezone_shift = st.number_input('Time shift', min_value=-23.5, max_value=23.5,
-                                             value=.0, step=0.5, key='timezone_shift',
-                                             help='If you want to convert GMT/local times when displying, specifiy the time diffs.')
+            timezone_shift = st.number_input(
+                'Time shift',
+                min_value=-23.5,
+                max_value=23.5,
+                value=.0,
+                step=0.5,
+                key='timezone_shift',
+                help='If you want to convert GMT/local times when displying, specifiy the time diffs.')
 
         st.markdown('---')
         st.subheader("Y Axis")
