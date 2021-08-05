@@ -69,7 +69,7 @@ def app():
             custom_datetime_format = None
             is_utc_time = False
             if st.checkbox('Use custom datetime format',
-                           key='datetime_format_help'):
+                           key='use_custom_datetime_format'):
                 custom_datetime_format = st.text_input(
                     'Use custom date/time format',
                     value='%Y-%M-%dT%H:%m:%S.%f',
@@ -187,7 +187,8 @@ def app():
                     df[x_axis_column] = pd.to_datetime(
                         df[x_axis_column], format=custom_datetime_format)
                     script_text += textwrap.dedent(f'''
-                            df["{x_axis_column}"] = pd.to_datetime(df["{x_axis_column}"], format='{custom_datetime_format}')''')
+                            df["{x_axis_column}"] = pd.to_datetime(df["{x_axis_column}"],
+                            \t\tformat='{custom_datetime_format}')''')
                 else:
                     script_text += textwrap.dedent(f'''
                             df["{x_axis_column}"] = pd.to_datetime(df["{x_axis_column}"])''')
